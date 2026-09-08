@@ -20,11 +20,11 @@ class TestIsNumberPositive:
             (-5, False),
         ]
     )
-    def test_is_number_positive_general(self, number: int, expected: bool):
+    def test_is_number_positive_general(self, number: int | float, expected: bool):
         actual = is_number_positive(number)
         assert expected is actual
 
-    @pytest.mark.skip(reason='Something strange here fix ASAP')
+    @pytest.mark.skip(reason='Something strange here. Fix ASAP')
     def test_is_number_positive_1(self):
         1/0
         number = 5
