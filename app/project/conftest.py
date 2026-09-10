@@ -1,6 +1,6 @@
 from pytest import fixture
 
-from models import BankAccount
+from models import BankAccount, ShoppingCart
 
 
 @fixture(scope='session')
@@ -30,3 +30,15 @@ def bank_account_2(bank_account_owner_name: str) -> BankAccount:
     # print(444444444444444444444444444)
     bank_account_created = BankAccount(owner=bank_account_owner_name)
     return bank_account_created
+
+
+@fixture()
+def default_item() -> dict:
+    return {"item": "apple", "price": 10, "quantity": 2}
+
+
+@fixture()
+def cart_with_default_item(default_item: dict) -> ShoppingCart:
+    cart = ShoppingCart()
+    cart.add_item(default_item["item"], default_item["price"], default_item["quantity"])
+    return cart
