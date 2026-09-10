@@ -15,3 +15,30 @@ class BankAccount:
         print(f"SMS: {self.id} deposit_money {summa}. Current balance: {self.money}grn")
 
 
+class ShoppingCart:
+    def __init__(self):
+        self.items = []
+
+    def _find_item(self, name: str):
+        for item in self.items:
+            if item["item"] == name:
+                return item
+        return None
+
+    def add_item(self, item: str, price: float | int, quantity: int):
+        found = self._find_item(item)
+        if found is None:
+            self.items.append(
+                {"item": item, "price": price, "quantity": quantity}
+            )
+        else:
+            found["quantity"] += quantity
+            found["price"] = price
+
+    def remove_item(self, item: str):
+        found = self._find_item(item)
+        if found is not None:
+            self.items.remove(found)
+
+    def get_total(self) -> float| int:
+        return sum(item["price"] * item["quantity"] for item in self.items)
