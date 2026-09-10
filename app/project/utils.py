@@ -9,6 +9,7 @@ def is_number_positive(number: int | float) -> bool:
     return result
 
 
+
 def is_password_safe(password: str) -> bool:
     has_8letters = len(password) >= 8
     has_digit = any(char.isdigit() for char in password)
@@ -19,3 +20,14 @@ def is_password_safe(password: str) -> bool:
         return True
     else:
         return False
+
+def calculate_discount(price: int | float, discount: int | float) -> int | float:
+    return price * (1 - discount / 100)
+
+def is_even(number: int) -> bool:
+    return number % 2 == 0
+
+
+def get_full_name(first_name: str, last_name: str) -> str:
+    return f'{first_name} {last_name}'
+

@@ -13,3 +13,5 @@ class BankAccount:
     def deposit_money(self, summa: int) -> None:
         self.money += summa
         print(f"SMS: {self.id} deposit_money {summa}. Current balance: {self.money}grn")
+
+
