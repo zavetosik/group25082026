@@ -1,34 +1,33 @@
 import jwt
-from time import sleep
 
 import datetime
 
 JWT_SECRET = 'dkfghkdfjhgldkshgklhdfsgd6fg56df5g6df5g6df56g5df65g5fdg5dg56df56gdf65'
 
-payload = {
-    "sub": '4545',
-    "iat": datetime.datetime.now(datetime.UTC),
-    "exp": datetime.datetime.now(datetime.UTC) + datetime.timedelta(seconds=5),
 
-    "userName": 'Vasyl',
-    'age': 18,
-    'is_admin': False
-}
+def create_jwt(subject: str | int, payload: dict, lifetime_sec: int = 5) -> str:
 
-encode_jwt = jwt.encode(
-    payload=payload,
-    key=JWT_SECRET,
-    algorithm='HS256'
-)
-print(encode_jwt)
+    base_payload = {
+        "sub": str(subject),
+        "iat": datetime.datetime.now(datetime.UTC),
+        "exp": datetime.datetime.now(datetime.UTC) + datetime.timedelta(seconds=lifetime_sec),
+    }
+    final_payload = payload | base_payload
 
-# web surfing
-# sleep(4)
-decode = jwt.decode(
-    jwt=encode_jwt,
-    key=JWT_SECRET,
-    algorithms=['HS256'],
-    # options={'verify_signature': False}
-)
+    encode_jwt = jwt.encode(
+        payload=final_payload,
+        key=JWT_SECRET,
+        algorithm='HS256'
+    )
+    return encode_jwt
 
-print(decode)
+
+def extract_payload_from_jwt(jwt_token: str) -> dict:
+    decode = jwt.decode(
+        jwt=jwt_token,
+        key=JWT_SECRET,
+        algorithms=['HS256'],
+        # options={'verify_signature': False}
+    )
+
+    return decode
