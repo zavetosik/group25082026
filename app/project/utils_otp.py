@@ -19,4 +19,4 @@ qr.show()
 otp_user = input('enter otp: ')
 is_vaild = totp.verify(otp_user)
 print(is_vaild)
-print(is_vaild)
+
