@@ -11,7 +11,18 @@ redis_client = redis.Redis(
 )
 
 
-success = redis_client.set('foo', 'bar333333333333333')
-# print(success)
-redis_client.set('myKeyTTL', "SecretKey", ex=10)
-redis_client.set('promo:1', "promocode", exat=datetime.datetime(year=2027, month=3, day=8))
+redis_client.set("favorite_car", "porsche")
+
+redis_client.set("Pet", "Sandy", ex=7200)
+
+redis_client.rpush("shopping_list", "milk", "eggs", "bread")
+redis_client.expireat("shopping_list", datetime.datetime.now() + datetime.timedelta(days=7))
+
+redis_client.hset("cake", mapping={
+    "flour": 250,
+    "milk": 500,
+})
+
+redis_client.hset("cake", "sugar", 300)
+
+redis_client.hset("cake", "sugar", 500)
