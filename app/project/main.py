@@ -1,1 +1,1 @@
-from boto3_utils import s3_client
+from boto3_utils import s3_hw
