@@ -13,5 +13,6 @@ connection_params = pika.ConnectionParameters(
     ssl_options=pika.SSLOptions(context=ssl_context)
 )
 
+
 def get_connection() -> pika.BlockingConnection:
     return pika.BlockingConnection(parameters=connection_params)
