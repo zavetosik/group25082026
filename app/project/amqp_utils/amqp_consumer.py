@@ -12,12 +12,12 @@ def process_new_message(
 
 ):
     print(body)
-    time.sleep(2)
+    time.sleep(0.5)
     channel.basic_ack(delivery_tag=method.delivery_tag)
 
 
 def consume_message(channel: blocking_connection.BlockingConnection):
-    QUEUE = 'news2'
+    QUEUE = 'weather'
 
     channel.basic_consume(
         queue=QUEUE,

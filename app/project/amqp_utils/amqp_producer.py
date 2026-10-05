@@ -4,10 +4,10 @@ import time
 
 
 def produce_message(channel: blocking_connection.BlockingConnection) -> None:
-    QUEUE = 'news2'
+    QUEUE = 'weather'
     channel.queue_declare(QUEUE)
 
-    message = 'hello kitty))) {item}'
+    message = 'Weather from Oleksandr Chykota: sunny, message {item}'
     for item in range(2210):
         time.sleep(0.1)
         channel.basic_publish(
@@ -15,7 +15,7 @@ def produce_message(channel: blocking_connection.BlockingConnection) -> None:
             routing_key=QUEUE,
             body=message.format(item=item)
         )
-        print(item)
+        print('Sent:', message.format(item=item))
 
 
 def main_producer():
