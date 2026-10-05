@@ -12,6 +12,7 @@ dependencies = [
     "boto3>=1.43.102",
     "passlib[bcrypt]==1.7.4",
     "pika>=1.4.4",
+    "psycopg2-binary>=2.9.13",
     "pyjwt>=2.14.0",
     "pyotp>=2.10.0",
     "pytest>=9.1.1",
